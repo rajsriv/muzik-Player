@@ -50,7 +50,32 @@ The UI resolves accent tints directly from the currently playing track's album a
 
 ## 📸 Screenshots
 
-> Screenshots coming soon. Clone and run the project on a physical device for the full experience.
+<div align="center">
+
+<table>
+  <tr>
+    <td align="center"><b>🏠 Home</b></td>
+    <td align="center"><b>🃏 Cards View</b></td>
+    <td align="center"><b>📼 Tape View</b></td>
+  </tr>
+  <tr>
+    <td><img src="homepage-portrait.png" width="220"/></td>
+    <td><img src="cardspage-portrait.png" width="220"/></td>
+    <td><img src="tapeView-portrait.png" width="220"/></td>
+  </tr>
+  <tr>
+    <td align="center"><b>🎵 Lyrics</b></td>
+    <td align="center"><b>⚙️ Settings</b></td>
+    <td align="center"><b>📂 Playlists</b></td>
+  </tr>
+  <tr>
+    <td><img src="lyricspage-portrait.png" width="220"/></td>
+    <td><img src="settings-portrait.png" width="220"/></td>
+    <td><img src="playlists-portrait.png" width="220"/></td>
+  </tr>
+</table>
+
+</div>
 
 ---
 
@@ -132,14 +157,17 @@ muzik-Player/
 
 ## 🗺️ Roadmap
 
-- [ ] Add screenshots and screen recordings to README
+- [x] Liquid Glass theming engine with 4 styles
+- [x] Glassmorphic control capsules
+- [x] Dynamic album-art accent colors
+- [x] Fluid player transitions
+- [x] Lyrics screen
+- [x] Playlists support
 - [ ] Migrate build scripts to Kotlin DSL (`.kts`)
 - [ ] Upgrade to AGP 8.x latest + Kotlin 2.x
 - [ ] Migrate media playback to `androidx.media3` / ExoPlayer
-- [ ] Add equalizer support
+- [ ] Equalizer support
 - [ ] Sleep timer
-- [ ] Lock screen / notification media controls
-- [ ] Playlist management
 - [ ] Widget support
 
 ---
