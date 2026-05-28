@@ -1,0 +1,48 @@
+com.raj.kotlinmusic.app-lifecycle-viewmodel-ktx-2.6.1-0 /home/raj/Storage/dev_caches/.gradle/caches/8.14.3/transforms/0cdded7224f335ffdf55230bfd25c1a6/transformed/lifecycle-viewmodel-ktx-2.6.1/res
+com.raj.kotlinmusic.app-savedstate-ktx-1.2.1-1 /home/raj/Storage/dev_caches/.gradle/caches/8.14.3/transforms/2a307da0e0ffc4d9ab89cbecd66c2d9c/transformed/savedstate-ktx-1.2.1/res
+com.raj.kotlinmusic.app-emoji2-1.3.0-2 /home/raj/Storage/dev_caches/.gradle/caches/8.14.3/transforms/2d7478ba3147a9b486ffefdeb0955a89/transformed/emoji2-1.3.0/res
+com.raj.kotlinmusic.app-ui-graphics-1.4.3-3 /home/raj/Storage/dev_caches/.gradle/caches/8.14.3/transforms/2f9bedddb4b08fbe1c24948ff7590d48/transformed/ui-graphics-1.4.3/res
+com.raj.kotlinmusic.app-ui-tooling-1.4.3-4 /home/raj/Storage/dev_caches/.gradle/caches/8.14.3/transforms/2ffcd502dc35ce3e1a5ea494cab6dc54/transformed/ui-tooling-1.4.3/res
+com.raj.kotlinmusic.app-lifecycle-runtime-ktx-2.6.1-5 /home/raj/Storage/dev_caches/.gradle/caches/8.14.3/transforms/35c691f83fccbeb00b3478474eb0dfd1/transformed/lifecycle-runtime-ktx-2.6.1/res
+com.raj.kotlinmusic.app-annotation-experimental-1.3.0-6 /home/raj/Storage/dev_caches/.gradle/caches/8.14.3/transforms/39d38f25e841705271126100782b6867/transformed/annotation-experimental-1.3.0/res
+com.raj.kotlinmusic.app-runtime-saveable-1.4.3-7 /home/raj/Storage/dev_caches/.gradle/caches/8.14.3/transforms/46212269dc86c5543e1857b28f991c87/transformed/runtime-saveable-1.4.3/res
+com.raj.kotlinmusic.app-material-icons-extended-1.4.3-8 /home/raj/Storage/dev_caches/.gradle/caches/8.14.3/transforms/4c5942be4a796ba31549ba3ecc65ece9/transformed/material-icons-extended-1.4.3/res
+com.raj.kotlinmusic.app-animation-core-1.4.3-9 /home/raj/Storage/dev_caches/.gradle/caches/8.14.3/transforms/54bcc87f7342e0d737e628edf3fcfa67/transformed/animation-core-1.4.3/res
+com.raj.kotlinmusic.app-ui-1.4.3-10 /home/raj/Storage/dev_caches/.gradle/caches/8.14.3/transforms/581f2be061911ee3a974a61a7466bccf/transformed/ui-1.4.3/res
+com.raj.kotlinmusic.app-material-1.4.3-11 /home/raj/Storage/dev_caches/.gradle/caches/8.14.3/transforms/59219abe8eff403c4a673db3d6f22a06/transformed/material-1.4.3/res
+com.raj.kotlinmusic.app-animation-1.4.3-12 /home/raj/Storage/dev_caches/.gradle/caches/8.14.3/transforms/5cd84f2c89e0d577ba777d47d040259e/transformed/animation-1.4.3/res
+com.raj.kotlinmusic.app-savedstate-1.2.1-13 /home/raj/Storage/dev_caches/.gradle/caches/8.14.3/transforms/5ed267508baf8a91744523f8495ef72b/transformed/savedstate-1.2.1/res
+com.raj.kotlinmusic.app-core-1.10.1-14 /home/raj/Storage/dev_caches/.gradle/caches/8.14.3/transforms/652cb8b9669db6a2caae8a8a0b66cb85/transformed/core-1.10.1/res
+com.raj.kotlinmusic.app-activity-ktx-1.7.2-15 /home/raj/Storage/dev_caches/.gradle/caches/8.14.3/transforms/692f4e9b998a77a710024b9713245a22/transformed/activity-ktx-1.7.2/res
+com.raj.kotlinmusic.app-ui-tooling-data-1.4.3-16 /home/raj/Storage/dev_caches/.gradle/caches/8.14.3/transforms/6dd294a23d113702e47b124a6e3f9f03/transformed/ui-tooling-data-1.4.3/res
+com.raj.kotlinmusic.app-foundation-1.4.3-17 /home/raj/Storage/dev_caches/.gradle/caches/8.14.3/transforms/6e0290de782fab78f5f161cb3cf8220a/transformed/foundation-1.4.3/res
+com.raj.kotlinmusic.app-startup-runtime-1.1.1-18 /home/raj/Storage/dev_caches/.gradle/caches/8.14.3/transforms/712fb1f359d4b42283cea36cc6a737c9/transformed/startup-runtime-1.1.1/res
+com.raj.kotlinmusic.app-lifecycle-viewmodel-savedstate-2.6.1-19 /home/raj/Storage/dev_caches/.gradle/caches/8.14.3/transforms/7391e52e30674cbcf2c9634cddcac2f9/transformed/lifecycle-viewmodel-savedstate-2.6.1/res
+com.raj.kotlinmusic.app-ui-geometry-1.4.3-20 /home/raj/Storage/dev_caches/.gradle/caches/8.14.3/transforms/805a1da3a5cbf60d44c58b136c7375dc/transformed/ui-geometry-1.4.3/res
+com.raj.kotlinmusic.app-material-icons-core-1.4.3-21 /home/raj/Storage/dev_caches/.gradle/caches/8.14.3/transforms/8561e3156b8e8d0dd50405d486dd7547/transformed/material-icons-core-1.4.3/res
+com.raj.kotlinmusic.app-runtime-1.4.3-22 /home/raj/Storage/dev_caches/.gradle/caches/8.14.3/transforms/8bb18d4d421f38950a282d9c71f0342b/transformed/runtime-1.4.3/res
+com.raj.kotlinmusic.app-profileinstaller-1.3.0-23 /home/raj/Storage/dev_caches/.gradle/caches/8.14.3/transforms/94b61840cd4b5d07822a4dfe766d6728/transformed/profileinstaller-1.3.0/res
+com.raj.kotlinmusic.app-lifecycle-viewmodel-compose-2.6.1-24 /home/raj/Storage/dev_caches/.gradle/caches/8.14.3/transforms/9c788cbb3d507e3b61225cc80d31bb1a/transformed/lifecycle-viewmodel-compose-2.6.1/res
+com.raj.kotlinmusic.app-lifecycle-process-2.6.1-25 /home/raj/Storage/dev_caches/.gradle/caches/8.14.3/transforms/a0f900198586304bb02b52f91d6736b8/transformed/lifecycle-process-2.6.1/res
+com.raj.kotlinmusic.app-activity-1.7.2-26 /home/raj/Storage/dev_caches/.gradle/caches/8.14.3/transforms/a1b03d27e34e2c4e001a3f4e50bb51e2/transformed/activity-1.7.2/res
+com.raj.kotlinmusic.app-customview-poolingcontainer-1.0.0-27 /home/raj/Storage/dev_caches/.gradle/caches/8.14.3/transforms/a7716153a6f249f8aa8941c9d21fbdb5/transformed/customview-poolingcontainer-1.0.0/res
+com.raj.kotlinmusic.app-lifecycle-livedata-core-2.6.1-28 /home/raj/Storage/dev_caches/.gradle/caches/8.14.3/transforms/ad607514cf8ab34e4c28b4eb6a6473bf/transformed/lifecycle-livedata-core-2.6.1/res
+com.raj.kotlinmusic.app-ui-test-manifest-1.4.3-29 /home/raj/Storage/dev_caches/.gradle/caches/8.14.3/transforms/af4cdd2e6d5dea9a471b488d23cdf223/transformed/ui-test-manifest-1.4.3/res
+com.raj.kotlinmusic.app-ui-tooling-preview-1.4.3-30 /home/raj/Storage/dev_caches/.gradle/caches/8.14.3/transforms/b6646a0effd02de9890a43c96b2ba63e/transformed/ui-tooling-preview-1.4.3/res
+com.raj.kotlinmusic.app-core-runtime-2.2.0-31 /home/raj/Storage/dev_caches/.gradle/caches/8.14.3/transforms/bbbf2dd64cde6302420fb3744504b6b1/transformed/core-runtime-2.2.0/res
+com.raj.kotlinmusic.app-activity-compose-1.7.2-32 /home/raj/Storage/dev_caches/.gradle/caches/8.14.3/transforms/bed48944bbeb9d9a3f6d54fcecf54865/transformed/activity-compose-1.7.2/res
+com.raj.kotlinmusic.app-material-ripple-1.4.3-33 /home/raj/Storage/dev_caches/.gradle/caches/8.14.3/transforms/c1cee0174e5490392f13395cb6207cde/transformed/material-ripple-1.4.3/res
+com.raj.kotlinmusic.app-lifecycle-runtime-2.6.1-34 /home/raj/Storage/dev_caches/.gradle/caches/8.14.3/transforms/c270d6aac0812768cb5a68e72ad9aad2/transformed/lifecycle-runtime-2.6.1/res
+com.raj.kotlinmusic.app-ui-util-1.4.3-35 /home/raj/Storage/dev_caches/.gradle/caches/8.14.3/transforms/c985425a8c3ec4309244f3a4ea84e58e/transformed/ui-util-1.4.3/res
+com.raj.kotlinmusic.app-material3-1.1.0-36 /home/raj/Storage/dev_caches/.gradle/caches/8.14.3/transforms/cf0021bf0f6ec86168f8a65b4d3a2a25/transformed/material3-1.1.0/res
+com.raj.kotlinmusic.app-ui-unit-1.4.3-37 /home/raj/Storage/dev_caches/.gradle/caches/8.14.3/transforms/d17ec27833d8e1fa3c9652f34d0d2691/transformed/ui-unit-1.4.3/res
+com.raj.kotlinmusic.app-ui-text-1.4.3-38 /home/raj/Storage/dev_caches/.gradle/caches/8.14.3/transforms/e5a75ef49a9f55e7f671d8d590da462c/transformed/ui-text-1.4.3/res
+com.raj.kotlinmusic.app-core-ktx-1.10.1-39 /home/raj/Storage/dev_caches/.gradle/caches/8.14.3/transforms/ef1b16af573ed511fa21f9ea035057c7/transformed/core-ktx-1.10.1/res
+com.raj.kotlinmusic.app-foundation-layout-1.4.3-40 /home/raj/Storage/dev_caches/.gradle/caches/8.14.3/transforms/f11d26fa195b7614ae907296a4e50110/transformed/foundation-layout-1.4.3/res
+com.raj.kotlinmusic.app-lifecycle-viewmodel-2.6.1-41 /home/raj/Storage/dev_caches/.gradle/caches/8.14.3/transforms/f1c8ff11bafb3b35762c557f882046dd/transformed/lifecycle-viewmodel-2.6.1/res
+com.raj.kotlinmusic.app-resValues-42 /home/raj/Storage/prsnl/Raj Prsnl/skill/kotlinmusic/app/build/generated/res/resValues/debug
+com.raj.kotlinmusic.app-packageDebugResources-43 /home/raj/Storage/prsnl/Raj Prsnl/skill/kotlinmusic/app/build/intermediates/incremental/debug/packageDebugResources/merged.dir
+com.raj.kotlinmusic.app-packageDebugResources-44 /home/raj/Storage/prsnl/Raj Prsnl/skill/kotlinmusic/app/build/intermediates/incremental/debug/packageDebugResources/stripped.dir
+com.raj.kotlinmusic.app-merged_res-45 /home/raj/Storage/prsnl/Raj Prsnl/skill/kotlinmusic/app/build/intermediates/merged_res/debug
+com.raj.kotlinmusic.app-debug-46 /home/raj/Storage/prsnl/Raj Prsnl/skill/kotlinmusic/app/src/debug/res
+com.raj.kotlinmusic.app-main-47 /home/raj/Storage/prsnl/Raj Prsnl/skill/kotlinmusic/app/src/main/res

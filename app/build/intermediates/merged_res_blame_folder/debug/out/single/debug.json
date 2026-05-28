@@ -1,0 +1,62 @@
+[
+    {
+        "merged": "com.raj.kotlinmusic.app-merged_res-46:/drawable_ic_next.xml.flat",
+        "source": "com.raj.kotlinmusic.app-main-48:/drawable/ic_next.xml"
+    },
+    {
+        "merged": "com.raj.kotlinmusic.app-merged_res-46:/drawable_notification_capsule_bg.xml.flat",
+        "source": "com.raj.kotlinmusic.app-main-48:/drawable/notification_capsule_bg.xml"
+    },
+    {
+        "merged": "com.raj.kotlinmusic.app-merged_res-46:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.raj.kotlinmusic.app-main-48:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.raj.kotlinmusic.app-merged_res-46:/font_writer.ttf.flat",
+        "source": "com.raj.kotlinmusic.app-main-48:/font/writer.ttf"
+    },
+    {
+        "merged": "com.raj.kotlinmusic.app-merged_res-46:/layout_notification_mini_capsule.xml.flat",
+        "source": "com.raj.kotlinmusic.app-main-48:/layout/notification_mini_capsule.xml"
+    },
+    {
+        "merged": "com.raj.kotlinmusic.app-merged_res-46:/font_korvich_slam.ttf.flat",
+        "source": "com.raj.kotlinmusic.app-main-48:/font/korvich_slam.ttf"
+    },
+    {
+        "merged": "com.raj.kotlinmusic.app-merged_res-46:/drawable_ic_play.xml.flat",
+        "source": "com.raj.kotlinmusic.app-main-48:/drawable/ic_play.xml"
+    },
+    {
+        "merged": "com.raj.kotlinmusic.app-merged_res-46:/raw_bg.mp4.flat",
+        "source": "com.raj.kotlinmusic.app-main-48:/raw/bg.mp4"
+    },
+    {
+        "merged": "com.raj.kotlinmusic.app-merged_res-46:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "com.raj.kotlinmusic.app-main-48:/drawable/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.raj.kotlinmusic.app-merged_res-46:/drawable_ic_pause.xml.flat",
+        "source": "com.raj.kotlinmusic.app-main-48:/drawable/ic_pause.xml"
+    },
+    {
+        "merged": "com.raj.kotlinmusic.app-merged_res-46:/drawable_notification_artwork_bg.xml.flat",
+        "source": "com.raj.kotlinmusic.app-main-48:/drawable/notification_artwork_bg.xml"
+    },
+    {
+        "merged": "com.raj.kotlinmusic.app-merged_res-46:/drawable_ic_launcher_monochromatic.xml.flat",
+        "source": "com.raj.kotlinmusic.app-main-48:/drawable/ic_launcher_monochromatic.xml"
+    },
+    {
+        "merged": "com.raj.kotlinmusic.app-merged_res-46:/xml_file_paths.xml.flat",
+        "source": "com.raj.kotlinmusic.app-main-48:/xml/file_paths.xml"
+    },
+    {
+        "merged": "com.raj.kotlinmusic.app-merged_res-46:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.raj.kotlinmusic.app-main-48:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "com.raj.kotlinmusic.app-merged_res-46:/raw_bg2.mp4.flat",
+        "source": "com.raj.kotlinmusic.app-main-48:/raw/bg2.mp4"
+    }
+]

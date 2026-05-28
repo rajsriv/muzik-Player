@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.raj.kotlinmusic.app-mergeDebugResources-44:/values-v16/values-v16.xml",
+            "map": [
+                {
+                    "source": "/home/raj/Storage/dev_caches/.gradle/caches/8.14.3/transforms/652cb8b9669db6a2caae8a8a0b66cb85/transformed/core-1.10.1/res/values-v16/values-v16.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "65",
+                        "endOffsets": "116"
+                    }
+                }
+            ]
+        }
+    ]
+}
