@@ -231,6 +231,19 @@ class MusicViewModel(application: Application) : AndroidViewModel(application) {
     fun deletePlaylist(id: String) {
         customPlaylists = customPlaylists.filter { it.id != id }
     }
+
+    var playlistToEdit by mutableStateOf<CustomPlaylist?>(null)
+
+    fun updatePlaylistSongs(id: String, newSongIds: List<String>) {
+        customPlaylists = customPlaylists.map {
+            if (it.id == id) it.copy(songIds = newSongIds) else it
+        }
+        // If we are currently viewing this playlist in CategoryList, refresh the view
+        val editedPlaylist = customPlaylists.find { it.id == id }
+        if (editedPlaylist != null && activeCategoryTitle == editedPlaylist.name) {
+            activeCategoryList = playlist.filter { it.id in newSongIds }
+        }
+    }
     init {
         _playlist.value = loadSongStats(_playlist.value)
         

@@ -47,7 +47,8 @@ enum class HomeViewState {
     DASHBOARD,
     CATEGORY_LIST,
     PLAYLISTS_OVERVIEW,
-    CREATE_PLAYLIST
+    CREATE_PLAYLIST,
+    EDIT_PLAYLIST
 }
 
 data class CustomPlaylist(

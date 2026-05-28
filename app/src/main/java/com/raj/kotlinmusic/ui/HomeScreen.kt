@@ -117,6 +117,8 @@ fun HomeScreen(viewModel: MusicViewModel) {
         }
     }
 
+    val dashboardScrollState = androidx.compose.foundation.lazy.rememberLazyListState()
+
     // Root Box for Overlays
     Box(modifier = Modifier.fillMaxSize()) {
         // The Bezel Layout
@@ -210,6 +212,7 @@ fun HomeScreen(viewModel: MusicViewModel) {
             when (state) {
                 HomeViewState.DASHBOARD -> {
         LazyColumn(
+            state = dashboardScrollState,
             modifier = Modifier
                 .fillMaxSize()
                 .statusBarsPadding()
@@ -436,6 +439,9 @@ fun HomeScreen(viewModel: MusicViewModel) {
                 HomeViewState.CREATE_PLAYLIST -> {
                     CreatePlaylistScreen(viewModel = viewModel)
                 }
+                HomeViewState.EDIT_PLAYLIST -> {
+                    EditPlaylistScreen(viewModel = viewModel)
+                }
             }
         }
         } // end blur Box
@@ -527,12 +533,21 @@ fun HomeScreen(viewModel: MusicViewModel) {
             label = "previewSpacing"
         )
 
+        val dashboardAlpha = if (viewModel.homeViewState == HomeViewState.DASHBOARD) {
+            val offset = dashboardScrollState.firstVisibleItemScrollOffset
+            val index = dashboardScrollState.firstVisibleItemIndex
+            if (index > 0) 0f else (1f - (offset / 300f)).coerceIn(0f, 1f)
+        } else {
+            1f
+        }
+
         // Settings Gear Icon and Gradient previews placed at the top-right corner
         Row(
             modifier = Modifier
                 .align(Alignment.TopEnd)
                 .statusBarsPadding()
                 .padding(end = 16.dp, top = 8.dp)
+                .alpha(dashboardAlpha)
                 .zIndex(5f),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(8.dp)
@@ -950,8 +965,18 @@ fun CategoryListScreen(viewModel: MusicViewModel) {
                 text = viewModel.activeCategoryTitle,
                 color = textColor,
                 fontSize = 24.sp,
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.weight(1f)
             )
+            val isCustomPlaylist = viewModel.customPlaylists.any { it.name == viewModel.activeCategoryTitle }
+            if (isCustomPlaylist) {
+                IconButton(onClick = { 
+                    viewModel.playlistToEdit = viewModel.customPlaylists.find { it.name == viewModel.activeCategoryTitle }
+                    viewModel.homeViewState = HomeViewState.EDIT_PLAYLIST
+                }) {
+                    Icon(Icons.Filled.Edit, contentDescription = "Edit Playlist", tint = textColor)
+                }
+            }
         }
         Spacer(modifier = Modifier.height(16.dp))
 
@@ -2310,6 +2335,118 @@ fun CreatePlaylistScreen(viewModel: MusicViewModel) {
                 shape = RoundedCornerShape(24.dp)
             ) {
                 Text("Confirm", fontWeight = FontWeight.Bold)
+            }
+        }
+    }
+}
+
+@Composable
+fun EditPlaylistScreen(viewModel: MusicViewModel) {
+    val theme = viewModel.currentPalette
+    val playlist = viewModel.playlistToEdit ?: return
+    
+    var selectedSongIds by remember { mutableStateOf(playlist.songIds.toSet()) }
+    
+    BackHandler(enabled = viewModel.homeViewState == HomeViewState.EDIT_PLAYLIST) {
+        viewModel.homeViewState = HomeViewState.CATEGORY_LIST
+    }
+
+    Box(modifier = Modifier.fillMaxSize().background(theme.background)) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(24.dp)
+        ) {
+            Spacer(modifier = Modifier.height(32.dp))
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                IconButton(onClick = { viewModel.homeViewState = HomeViewState.CATEGORY_LIST }) {
+                    Icon(Icons.Default.ArrowBack, contentDescription = "Back", tint = theme.text)
+                }
+                Text("Edit Playlist", color = theme.text, fontSize = 24.sp, fontWeight = FontWeight.ExtraBold)
+            }
+            
+            Spacer(modifier = Modifier.height(24.dp))
+            Text("Select Songs (${selectedSongIds.size})", color = theme.text, fontWeight = FontWeight.Bold)
+            Spacer(modifier = Modifier.height(8.dp))
+            
+            LazyColumn(
+                modifier = Modifier.fillMaxWidth().weight(1f),
+                contentPadding = PaddingValues(bottom = 140.dp) // space for bottom pills
+            ) {
+                items(viewModel.playlist) { song ->
+                    val isSelected = selectedSongIds.contains(song.id)
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 4.dp)
+                            .clip(RoundedCornerShape(12.dp))
+                            .background(if (isSelected) theme.accent1.copy(alpha = 0.2f) else theme.surface)
+                            .let { if (theme.id == "liquid_glass") it.border(1.dp, Color.White.copy(alpha = 0.25f), RoundedCornerShape(12.dp)) else it }
+                            .clickable {
+                                if (isSelected) selectedSongIds = selectedSongIds - song.id
+                                else selectedSongIds = selectedSongIds + song.id
+                            }
+                            .padding(12.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .size(24.dp)
+                                .clip(CircleShape)
+                                .border(2.dp, if (isSelected) theme.accent1 else theme.mutedText, CircleShape)
+                                .background(if (isSelected) theme.accent1 else Color.Transparent),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            if (isSelected) {
+                                Icon(Icons.Default.Check, contentDescription = null, tint = theme.background, modifier = Modifier.size(16.dp))
+                            }
+                        }
+                        Spacer(modifier = Modifier.width(16.dp))
+                        Column(modifier = Modifier.weight(1f)) {
+                            Text(song.title, color = theme.text, fontWeight = FontWeight.Bold, maxLines = 1, overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis)
+                            Text(song.artist, color = theme.mutedText, fontSize = 12.sp, maxLines = 1, overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis)
+                        }
+                    }
+                }
+            }
+        }
+        
+        // Bottom Actions (Cancel / Save pills)
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .align(Alignment.BottomCenter)
+                .padding(horizontal = 12.dp, vertical = 12.dp),
+            horizontalArrangement = Arrangement.spacedBy(12.dp)
+        ) {
+            Button(
+                onClick = { viewModel.homeViewState = HomeViewState.CATEGORY_LIST },
+                modifier = Modifier.weight(1f).height(48.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = if (theme.id == "white_candy") Color(0xFF1E272E) else theme.surface,
+                    contentColor = if (theme.id == "white_candy") Color.White else theme.text
+                ),
+                shape = RoundedCornerShape(24.dp)
+            ) {
+                Text("Cancel", fontWeight = FontWeight.Bold)
+            }
+            
+            Button(
+                onClick = {
+                    viewModel.updatePlaylistSongs(playlist.id, selectedSongIds.toList())
+                    viewModel.homeViewState = HomeViewState.CATEGORY_LIST
+                },
+                modifier = Modifier.weight(1f).height(48.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = if (theme.id == "white_candy") Color(0xFF1E272E) else theme.accent1,
+                    contentColor = if (theme.id == "white_candy") Color.White else theme.background
+                ),
+                shape = RoundedCornerShape(24.dp)
+            ) {
+                Text("Save", fontWeight = FontWeight.Bold)
             }
         }
     }
