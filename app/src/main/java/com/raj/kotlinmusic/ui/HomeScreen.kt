@@ -538,10 +538,11 @@ fun HomeScreen(viewModel: MusicViewModel) {
             val index = dashboardScrollState.firstVisibleItemIndex
             if (index > 0) 0f else (1f - (offset / 300f)).coerceIn(0f, 1f)
         } else {
-            1f
+            0f
         }
 
         // Settings Gear Icon and Gradient previews placed at the top-right corner
+        if (viewModel.homeViewState == HomeViewState.DASHBOARD) {
         Row(
             modifier = Modifier
                 .align(Alignment.TopEnd)
@@ -608,6 +609,7 @@ fun HomeScreen(viewModel: MusicViewModel) {
                     modifier = Modifier.size(24.dp)
                 )
             }
+        }
         }
 
         // Full screen Settings Page overlay
