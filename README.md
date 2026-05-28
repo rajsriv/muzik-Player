@@ -10,7 +10,6 @@
 <img src="https://img.shields.io/badge/Language-Kotlin-7F52FF?style=for-the-badge&logo=kotlin&logoColor=white"/>
 <img src="https://img.shields.io/badge/UI-Jetpack%20Compose-4285F4?style=for-the-badge&logo=jetpackcompose&logoColor=white"/>
 <img src="https://img.shields.io/badge/Architecture-MVVM-FF6F00?style=for-the-badge"/>
-<img src="https://img.shields.io/badge/License-Personal-lightgrey?style=for-the-badge"/>
 
 <br/>
 <br/>
