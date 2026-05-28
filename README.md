@@ -26,9 +26,6 @@ Muzik Player is a UI/UX exploration project focused on delivering a premium, gla
 ### 🎨 Liquid Glass Theming Engine
 Four fully immersive visual palettes — **Sunset Gold**, **Ice Blue**, **Neon Pink**, and **Forest Green** — that dynamically repaint the entire UI, from radial background blobs to control capsules, on a single tap. No app restart required.
 
-### 🪟 Glassmorphic UI
-Translucent control capsules, action pills, and floating action buttons with precision-tuned frosted-glass borders. Each surface is crafted to blend with the ambient background without optical color-bleeding.
-
 ### 🔄 Fluid Player Transitions
 Seamless, physics-aware animations between three player states:
 - **Mini-player** — compact bottom bar
