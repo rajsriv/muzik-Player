@@ -159,19 +159,6 @@ object ThemePalettes {
         accent4 = Color(0xFFE2E8F0)
     )
 
-    val NightSpice = ColorPalette(
-        id = "night_spice",
-        name = "Night Spice",
-        background = Color(0xFF000000), // AMOLED Black
-        surface = Color(0xFF212121), // Grey Bezels/Belt
-        text = Color(0xFFF8FAFC),
-        mutedText = Color(0xFF94A3B8),
-        accent1 = Color(0xFFFF4500), // Fiery Orange/Red
-        accent2 = Color(0xFFFF9800), // Saffron
-        accent3 = Color(0xFF3A1F28), // Deep Maroon/Wine
-        accent4 = Color(0xFF26141D)
-    )
-
     val Caesar = ColorPalette(
         id = "caesar",
         name = "Caesar",
@@ -181,7 +168,7 @@ object ThemePalettes {
         mutedText = Color(0xFFAAAAAA),
         accent1 = Color(0xFF6D001A), // Burgundy
         accent2 = Color(0xFF8B0021), // Lighter Burgundy
-        accent3 = Color(0xFFFFFFFF), // White accent
+        accent3 = Color(0xFF30000B), // Very Dark Burgundy for cards
         accent4 = Color(0xFF222222)
     )
 
@@ -197,7 +184,6 @@ object ThemePalettes {
         DarkJungleGreen,
         LiquidGlass,
         WhiteCandy,
-        NightSpice,
         Caesar
     )
     
