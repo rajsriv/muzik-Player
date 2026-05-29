@@ -125,6 +125,18 @@ class MainActivity : ComponentActivity() {
                 ) {
                     val isPlayerVisible = viewModel.currentAppScreen == AppScreen.PLAYER
                     
+                    val playerAlpha by androidx.compose.animation.core.animateFloatAsState(
+                        targetValue = if (isPlayerVisible) 1f else 0f,
+                        animationSpec = tween(durationMillis = 300, easing = FastOutSlowInEasing),
+                        label = "playerAlpha"
+                    )
+                    
+                    val playerTranslationY by androidx.compose.animation.core.animateFloatAsState(
+                        targetValue = if (isPlayerVisible) 0f else 3000f,
+                        animationSpec = tween(durationMillis = 500, easing = FastOutSlowInEasing),
+                        label = "playerTranslationY"
+                    )
+                    
                     Box(modifier = Modifier.fillMaxSize()) {
                         // 1. App Content Layer
                         Box(
@@ -139,25 +151,15 @@ class MainActivity : ComponentActivity() {
                                 modifier = Modifier
                                     .fillMaxSize()
                                     .graphicsLayer {
-                                        alpha = if (isPlayerVisible) 1f else 0f
-                                        translationY = if (isPlayerVisible) 0f else 10000f
+                                        alpha = playerAlpha
+                                        translationY = playerTranslationY
                                     }
                             ) {
                                 MainScreen(viewModel = viewModel)
                             }
 
-                            // LyricsScreen is composed on top when active with a dynamic sliding transition
-                            androidx.compose.animation.AnimatedVisibility(
-                                visible = viewModel.currentAppScreen == AppScreen.LYRICS,
-                                enter = androidx.compose.animation.slideInVertically(
-                                    initialOffsetY = { it },
-                                    animationSpec = androidx.compose.animation.core.tween(400, easing = androidx.compose.animation.core.FastOutSlowInEasing)
-                                ),
-                                exit = androidx.compose.animation.slideOutVertically(
-                                    targetOffsetY = { it },
-                                    animationSpec = androidx.compose.animation.core.tween(400, easing = androidx.compose.animation.core.FastOutSlowInEasing)
-                                )
-                            ) {
+                            // LyricsScreen is composed on top when active
+                            if (viewModel.currentAppScreen == AppScreen.LYRICS) {
                                 LyricsScreen(viewModel = viewModel)
                             }
                         }
