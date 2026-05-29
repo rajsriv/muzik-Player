@@ -137,6 +137,7 @@ fun LyricsScreen(
 
     var showImportPill by remember { mutableStateOf(false) }
     var customVideoIndex by remember { mutableStateOf(0) }
+    var forceVideoMode by remember { mutableStateOf(false) }
     
     val videoPickerLauncher = androidx.activity.compose.rememberLauncherForActivityResult(
         contract = androidx.activity.result.contract.ActivityResultContracts.OpenMultipleDocuments()
@@ -432,7 +433,7 @@ fun LyricsScreen(
                     .clip(RoundedCornerShape(28.dp))
                     .background(if (theme.id == "liquid_glass") Color(0xFF0C0E17) else theme.background)
             ) {
-                val hasLyrics = viewModel.isLyricsLoading || viewModel.syncedLyricsList.isNotEmpty()
+                val hasLyrics = (viewModel.isLyricsLoading || viewModel.syncedLyricsList.isNotEmpty() || (!viewModel.lyricsText.isNullOrEmpty() && viewModel.lyricsText?.startsWith("No lyrics") == false && viewModel.lyricsText?.startsWith("No matching lyrics") == false)) && !forceVideoMode
                 
                 if (hasLyrics && theme.id == "white_candy") {
                     Canvas(modifier = Modifier.fillMaxSize()) {
@@ -481,7 +482,7 @@ fun LyricsScreen(
                     }
                 }
 
-                if (viewModel.isLyricsLoading) {
+                if (!forceVideoMode && viewModel.isLyricsLoading) {
                     // Loading State
                     Column(
                         modifier = Modifier.fillMaxSize(),
@@ -497,7 +498,7 @@ fun LyricsScreen(
                             fontWeight = FontWeight.Medium
                         )
                     }
-                } else if (viewModel.syncedLyricsList.isNotEmpty()) {
+                } else if (!forceVideoMode && viewModel.syncedLyricsList.isNotEmpty()) {
                     val effectiveStyle = if (selectionMode) com.raj.kotlinmusic.LyricsStyle.WORD_BY_WORD else viewModel.lyricsStyle
                     if (effectiveStyle == com.raj.kotlinmusic.LyricsStyle.TYPOGRAPHIC) {
                         val activeLine = viewModel.syncedLyricsList.getOrNull(activeLineIndex)
@@ -728,7 +729,7 @@ fun LyricsScreen(
                         }
                     }
                     }
-                } else if (!viewModel.lyricsText.isNullOrEmpty() && viewModel.lyricsText?.startsWith("No lyrics") == false && viewModel.lyricsText?.startsWith("No matching lyrics") == false) {
+                } else if (!forceVideoMode && !viewModel.lyricsText.isNullOrEmpty() && viewModel.lyricsText?.startsWith("No lyrics") == false && viewModel.lyricsText?.startsWith("No matching lyrics") == false) {
                     // Plain Unsynced Lyrics
                     LazyColumn(
                         modifier = Modifier
@@ -1113,6 +1114,13 @@ fun LyricsScreen(
                             showLyricsMenu = false
                             selectionMode = true
                             selectedLines = emptySet()
+                        }
+                    )
+                    DropdownMenuItem(
+                        text = { Text("Video mode", color = Color.White, fontWeight = FontWeight.Bold) },
+                        onClick = {
+                            showLyricsMenu = false
+                            forceVideoMode = true
                         }
                     )
                     DropdownMenuItem(
