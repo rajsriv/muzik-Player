@@ -110,15 +110,15 @@ fun HomeScreen(viewModel: MusicViewModel) {
 
     var isExpandedByClick by androidx.compose.runtime.remember { androidx.compose.runtime.mutableStateOf(false) }
 
-    androidx.compose.runtime.LaunchedEffect(viewModel.isPlaying, isExpandedByClick) {
-        if (!viewModel.isPlaying && isExpandedByClick) {
+    androidx.compose.runtime.LaunchedEffect(viewModel.isPlaying, isExpandedByClick, viewModel.currentAppScreen) {
+        if (!viewModel.isPlaying && isExpandedByClick && viewModel.currentAppScreen == com.raj.kotlinmusic.AppScreen.HOME) {
             kotlinx.coroutines.delay(3000)
             isExpandedByClick = false
         }
     }
 
-    androidx.compose.runtime.LaunchedEffect(viewModel.currentAppScreen) {
-        if (viewModel.currentAppScreen == com.raj.kotlinmusic.AppScreen.HOME && !viewModel.isPlaying && !viewModel.isStopped) {
+    androidx.compose.runtime.LaunchedEffect(viewModel.currentAppScreen, viewModel.isPlaying, viewModel.isStopped) {
+        if (viewModel.currentAppScreen == com.raj.kotlinmusic.AppScreen.PLAYER && !viewModel.isPlaying && !viewModel.isStopped) {
             isExpandedByClick = true
         }
     }
