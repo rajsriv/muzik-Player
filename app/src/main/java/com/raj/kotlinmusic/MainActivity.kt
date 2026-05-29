@@ -146,8 +146,18 @@ class MainActivity : ComponentActivity() {
                                 MainScreen(viewModel = viewModel)
                             }
 
-                            // LyricsScreen is composed on top when active
-                            if (viewModel.currentAppScreen == AppScreen.LYRICS) {
+                            // LyricsScreen is composed on top when active with a dynamic sliding transition
+                            androidx.compose.animation.AnimatedVisibility(
+                                visible = viewModel.currentAppScreen == AppScreen.LYRICS,
+                                enter = androidx.compose.animation.slideInVertically(
+                                    initialOffsetY = { it },
+                                    animationSpec = androidx.compose.animation.core.tween(400, easing = androidx.compose.animation.core.FastOutSlowInEasing)
+                                ),
+                                exit = androidx.compose.animation.slideOutVertically(
+                                    targetOffsetY = { it },
+                                    animationSpec = androidx.compose.animation.core.tween(400, easing = androidx.compose.animation.core.FastOutSlowInEasing)
+                                )
+                            ) {
                                 LyricsScreen(viewModel = viewModel)
                             }
                         }
