@@ -801,10 +801,8 @@ fun MainScreen(viewModel: MusicViewModel = viewModel()) {
 
                     Spacer(modifier = Modifier.height(10.dp)) // The black belt
 
-                    // 4. Bottom White Capsule
-                    com.raj.kotlinmusic.ui.components.SimpleBottomCapsule(
-                        viewModel = viewModel
-                    )
+                    // 4. Spacer for Global Bottom White Capsule
+                    Spacer(modifier = Modifier.height(60.dp).navigationBarsPadding())
                 }
             }
         }
