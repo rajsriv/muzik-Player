@@ -120,17 +120,17 @@ object ThemePalettes {
         accent4 = Color(0xFFE2F5F3)  // Azure Mist
     )
 
-    val DarkJungleGreen = ColorPalette(
-        id = "dark_jungle_green",
-        name = "Dark Jungle Green",
-        background = Color(0xFF1E201F),
-        surface = Color(0xFF2C302F),
+    val KorainandoGreen = ColorPalette(
+        id = "korainando_green",
+        name = "Korainando Green",
+        background = Color(0xFF0E1E19), // Black Stallion
+        surface = Color(0xFF1F3D33), // Korainando Green
         text = Color(0xFFFFFFFF),
-        mutedText = Color(0xFF5AA371),
-        accent1 = Color(0xFF1D6C61), // Deep Turquoise
-        accent2 = Color(0xFF3EB9A8), // Verdigris
-        accent3 = Color(0xFF5AA371), // Forest Green
-        accent4 = Color(0xFF193A31)  // Medium Jungle Green
+        mutedText = Color(0xFFA8B9BC), // Lagoon Reflection
+        accent1 = Color(0xFF376157), // Posy Green
+        accent2 = Color(0xFF618C87), // Steel Teal
+        accent3 = Color(0xFF376157), // Posy Green
+        accent4 = Color(0xFFA8B9BC) // Lagoon Reflection
     )
 
     val LiquidGlass = ColorPalette(
@@ -181,7 +181,7 @@ object ThemePalettes {
         TravelAgency,
         Honeydew,
         AzureMist,
-        DarkJungleGreen,
+        KorainandoGreen,
         LiquidGlass,
         WhiteCandy,
         Caesar
