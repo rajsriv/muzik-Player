@@ -117,6 +117,12 @@ fun HomeScreen(viewModel: MusicViewModel) {
         }
     }
 
+    androidx.compose.runtime.LaunchedEffect(viewModel.currentAppScreen) {
+        if (viewModel.currentAppScreen == com.raj.kotlinmusic.AppScreen.HOME && !viewModel.isPlaying && !viewModel.isStopped) {
+            isExpandedByClick = true
+        }
+    }
+
     val dashboardScrollState = androidx.compose.foundation.lazy.rememberLazyListState()
 
     // Root Box for Overlays
@@ -447,9 +453,82 @@ fun HomeScreen(viewModel: MusicViewModel) {
         } // end blur Box
         } // close Box(weight(1f))
         
-        // --- Spacer for Global Control Capsule Area ---
+        // --- Dynamic Control Capsule Area ---
         if (!viewModel.isStopped) {
-            Spacer(modifier = Modifier.height(84.dp).fillMaxWidth().navigationBarsPadding())
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(24.dp), // Increased height a little
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = "${viewModel.currentSong.title}",
+                    color = Color.White.copy(alpha = 0.6f),
+                    fontSize = 11.sp,
+                    fontWeight = FontWeight.Bold,
+                    maxLines = 1,
+                    overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis,
+                    modifier = Modifier.padding(horizontal = 16.dp)
+                )
+            }
+            
+            val isExpanded = viewModel.isPlaying || isExpandedByClick
+            
+            androidx.compose.animation.AnimatedContent(
+                targetState = isExpanded,
+                label = "CapsuleFade",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clip(RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp, bottomStart = 28.dp, bottomEnd = 28.dp))
+                    .clickable(
+                        enabled = !isExpanded,
+                        onClick = { isExpandedByClick = true }
+                    ),
+                contentAlignment = Alignment.BottomCenter,
+                transitionSpec = {
+                    androidx.compose.animation.fadeIn(animationSpec = androidx.compose.animation.core.tween(400)) with
+                    androidx.compose.animation.fadeOut(animationSpec = androidx.compose.animation.core.tween(400)) using
+                    androidx.compose.animation.SizeTransform { _, _ ->
+                        androidx.compose.animation.core.spring(
+                            dampingRatio = androidx.compose.animation.core.Spring.DampingRatioLowBouncy,
+                            stiffness = androidx.compose.animation.core.Spring.StiffnessLow
+                        )
+                    }
+                }
+            ) { expanded ->
+                if (expanded) {
+                    com.raj.kotlinmusic.ui.components.SimpleBottomCapsule(
+                        viewModel = viewModel,
+                        modifier = Modifier
+                    )
+                } else {
+                    // Collapsed state (White Capsule look)
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .let {
+                                if (theme.id == "liquid_glass") {
+                                    val liquidGlassColors = viewModel.getLiquidGlassColors(theme)
+                                    it.background(liquidGlassColors[2].copy(alpha = 0.5f))
+                                        .border(1.dp, Color.White.copy(alpha = 0.25f), RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp, bottomStart = 28.dp, bottomEnd = 28.dp))
+                                } else {
+                                    it.background(theme.surface)
+                                }
+                            }
+                            .navigationBarsPadding()
+                            .padding(vertical = 12.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(
+                            text = "CONTROLS",
+                            color = theme.mutedText,
+                            fontSize = 11.sp,
+                            fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
+                            letterSpacing = 2.sp
+                        )
+                    }
+                }
+            }
         }
     } // close Column
 

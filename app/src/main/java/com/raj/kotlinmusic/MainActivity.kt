@@ -33,7 +33,6 @@ import androidx.compose.ui.zIndex
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.core.FastOutSlowInEasing
-import androidx.compose.animation.*
 import androidx.compose.foundation.Canvas
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.foundation.gestures.detectTapGestures
@@ -45,7 +44,6 @@ import com.raj.kotlinmusic.ui.theme.ColorPalette
 import com.raj.kotlinmusic.ui.MainScreen
 import com.raj.kotlinmusic.ui.LyricsScreen
 
-@OptIn(androidx.compose.animation.ExperimentalAnimationApi::class)
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -153,12 +151,6 @@ class MainActivity : ComponentActivity() {
                                 LyricsScreen(viewModel = viewModel)
                             }
                         }
-
-                        // Global Bottom Capsule overlay
-                        GlobalBottomCapsule(
-                            viewModel = viewModel,
-                            modifier = Modifier.align(Alignment.BottomCenter)
-                        )
                     }
                 }
             }
@@ -166,98 +158,3 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@androidx.compose.animation.ExperimentalAnimationApi
-@Composable
-fun GlobalBottomCapsule(viewModel: MusicViewModel, modifier: Modifier = Modifier) {
-    val theme = viewModel.currentPalette
-    var isExpandedByClick by remember { mutableStateOf(false) }
-
-    LaunchedEffect(viewModel.isPlaying, isExpandedByClick) {
-        if (!viewModel.isPlaying && isExpandedByClick) {
-            kotlinx.coroutines.delay(3000)
-            isExpandedByClick = false
-        }
-    }
-
-    if (!viewModel.isStopped && viewModel.currentAppScreen != AppScreen.LYRICS) {
-        Column(modifier = modifier) {
-            if (viewModel.currentAppScreen == AppScreen.HOME) {
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(24.dp),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Text(
-                        text = "${viewModel.currentSong.title}",
-                        color = Color.White.copy(alpha = 0.6f),
-                        fontSize = 11.sp,
-                        fontWeight = FontWeight.Bold,
-                        maxLines = 1,
-                        overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis,
-                        modifier = Modifier.padding(horizontal = 16.dp)
-                    )
-                }
-            } else {
-                Spacer(modifier = Modifier.height(24.dp))
-            }
-            
-            val isExpanded = viewModel.isPlaying || isExpandedByClick || viewModel.currentAppScreen == AppScreen.PLAYER
-            
-            androidx.compose.animation.AnimatedContent(
-                targetState = isExpanded,
-                label = "CapsuleFade",
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .clip(RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp, bottomStart = 28.dp, bottomEnd = 28.dp))
-                    .clickable(
-                        enabled = !isExpanded,
-                        onClick = { isExpandedByClick = true }
-                    ),
-                contentAlignment = Alignment.BottomCenter,
-                transitionSpec = {
-                    androidx.compose.animation.fadeIn(animationSpec = tween(400)) with
-                    androidx.compose.animation.fadeOut(animationSpec = tween(400)) using
-                    androidx.compose.animation.SizeTransform { _, _ ->
-                        androidx.compose.animation.core.spring(
-                            dampingRatio = androidx.compose.animation.core.Spring.DampingRatioLowBouncy,
-                            stiffness = androidx.compose.animation.core.Spring.StiffnessLow
-                        )
-                    }
-                }
-            ) { expanded ->
-                if (expanded) {
-                    com.raj.kotlinmusic.ui.components.SimpleBottomCapsule(
-                        viewModel = viewModel,
-                        modifier = Modifier
-                    )
-                } else {
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .let {
-                                if (theme.id == "liquid_glass") {
-                                    val liquidGlassColors = viewModel.getLiquidGlassColors(theme)
-                                    it.background(liquidGlassColors[2].copy(alpha = 0.5f))
-                                        .border(1.dp, Color.White.copy(alpha = 0.25f), RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp, bottomStart = 28.dp, bottomEnd = 28.dp))
-                                } else {
-                                    it.background(theme.surface)
-                                }
-                            }
-                            .navigationBarsPadding()
-                            .padding(vertical = 12.dp),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Text(
-                            text = "CONTROLS",
-                            color = theme.mutedText,
-                            fontSize = 11.sp,
-                            fontWeight = FontWeight.Bold,
-                            letterSpacing = 2.sp
-                        )
-                    }
-                }
-            }
-        }
-    }
-}
