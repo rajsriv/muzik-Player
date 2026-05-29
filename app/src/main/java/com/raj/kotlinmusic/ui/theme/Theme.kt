@@ -42,17 +42,17 @@ object ThemePalettes {
         accent4 = Color(0xFF8FA8B5)  // Slate Blue
     )
 
-    val VolcanicAsh = ColorPalette(
-        id = "volcanic_ash",
-        name = "Volcanic Ash",
-        background = Color(0xFF1A1410),
-        surface = Color(0xFF2B2420),
-        text = Color(0xFFF0EAE4),
-        mutedText = Color(0xFFA09088),
-        accent1 = Color(0xFFE8622A), // Ember
-        accent2 = Color(0xFFF0BF60), // Gold
-        accent3 = Color(0xFFC44F6A), // Magma Pink
-        accent4 = Color(0xFF7AB8A0)  // Seafoam
+    val MidnightExpress = ColorPalette(
+        id = "midnight_express",
+        name = "Midnight Express",
+        background = Color(0xFF202937), // Midnight Express
+        surface = Color(0xFF423D42), // Bluish Black
+        text = Color(0xFFE6D7CD), // Dance of the Goddesses
+        mutedText = Color(0xFFA99898), // Trillium
+        accent1 = Color(0xFF766664), // Paradise Grape
+        accent2 = Color(0xFFD4C1B9), // New Wool
+        accent3 = Color(0xFF202937), // Midnight Express
+        accent4 = Color(0xFF423D42) // Bluish Black
     )
 
     val MidnightJazz = ColorPalette(
@@ -175,7 +175,7 @@ object ThemePalettes {
     val list = listOf(
         Bridged,
         MatchaMilk,
-        VolcanicAsh,
+        MidnightExpress,
         MidnightJazz,
         PolarBloom,
         TravelAgency,
