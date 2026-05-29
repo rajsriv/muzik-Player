@@ -172,6 +172,19 @@ object ThemePalettes {
         accent4 = Color(0xFF26141D)
     )
 
+    val Caesar = ColorPalette(
+        id = "caesar",
+        name = "Caesar",
+        background = Color(0xFF000000), // Black
+        surface = Color(0xFF111111), // Very dark surface
+        text = Color(0xFFFFFFFF), // White
+        mutedText = Color(0xFFAAAAAA),
+        accent1 = Color(0xFF6D001A), // Burgundy
+        accent2 = Color(0xFF8B0021), // Lighter Burgundy
+        accent3 = Color(0xFFFFFFFF), // White accent
+        accent4 = Color(0xFF222222)
+    )
+
     val list = listOf(
         RetroTech,
         MatchaMilk,
@@ -184,7 +197,8 @@ object ThemePalettes {
         DarkJungleGreen,
         LiquidGlass,
         WhiteCandy,
-        NightSpice
+        NightSpice,
+        Caesar
     )
     
     fun getById(id: String): ColorPalette {
