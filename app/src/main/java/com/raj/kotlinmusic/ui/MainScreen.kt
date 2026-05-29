@@ -295,6 +295,30 @@ fun MainScreen(viewModel: MusicViewModel = viewModel()) {
             .fillMaxSize()
             .background(theme.background)
     ) {
+        if (theme.id != "white_candy" && theme.id != "liquid_glass") {
+            Canvas(modifier = Modifier.fillMaxSize()) {
+                // Top-Left Gradient
+                drawCircle(
+                    brush = androidx.compose.ui.graphics.Brush.radialGradient(
+                        colors = listOf(theme.accent1.copy(alpha = 0.6f), Color.Transparent),
+                        center = androidx.compose.ui.geometry.Offset(0f, 0f),
+                        radius = size.width * 1.2f
+                    ),
+                    center = androidx.compose.ui.geometry.Offset(0f, 0f),
+                    radius = size.width * 1.2f
+                )
+                // Top-Right Gradient
+                drawCircle(
+                    brush = androidx.compose.ui.graphics.Brush.radialGradient(
+                        colors = listOf(theme.accent2.copy(alpha = 0.5f), Color.Transparent),
+                        center = androidx.compose.ui.geometry.Offset(size.width, 0f),
+                        radius = size.width * 1.2f
+                    ),
+                    center = androidx.compose.ui.geometry.Offset(size.width, 0f),
+                    radius = size.width * 1.2f
+                )
+            }
+        }
         if (theme.id == "liquid_glass") {
             val liquidGlassColors = viewModel.getLiquidGlassColors(theme)
             // Vibrant sweeping background for true glassmorphic refraction
