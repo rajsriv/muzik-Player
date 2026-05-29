@@ -16,17 +16,17 @@ data class ColorPalette(
 )
 
 object ThemePalettes {
-    val RetroTech = ColorPalette(
-        id = "retro_tech",
-        name = "Retro Tech",
-        background = Color(0xFF161616),
-        surface = Color(0xFF2C2C2C),
-        text = Color(0xFFFFFFFF),
-        mutedText = Color(0xFF9E9E9E),
-        accent1 = Color(0xFFEE6557), // Coral
-        accent2 = Color(0xFFD3E382), // Lime
-        accent3 = Color(0xFFF5C754), // Yellow
-        accent4 = Color(0xFFFF8A65)  // Light Coral
+    val Bridged = ColorPalette(
+        id = "bridged",
+        name = "Bridged",
+        background = Color(0xFF000000), // Black
+        surface = Color(0xFF161616), // Dark Grey
+        text = Color(0xFFFFFFFF), // White
+        mutedText = Color(0xFF888888),
+        accent1 = Color(0xFFAD7D56), // French Beige
+        accent2 = Color(0xFFCDB49E), // Rodeo Dust
+        accent3 = Color(0xFFAD7D56), // French Beige
+        accent4 = Color(0xFFCDB49E)  // Rodeo Dust
     )
 
     val MatchaMilk = ColorPalette(
@@ -186,7 +186,7 @@ object ThemePalettes {
     )
 
     val list = listOf(
-        RetroTech,
+        Bridged,
         MatchaMilk,
         VolcanicAsh,
         MidnightJazz,
