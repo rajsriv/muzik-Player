@@ -162,8 +162,8 @@ object ThemePalettes {
     val NightSpice = ColorPalette(
         id = "night_spice",
         name = "Night Spice",
-        background = Color(0xFF160D12),
-        surface = Color(0xFF22151D),
+        background = Color(0xFF000000), // AMOLED Black
+        surface = Color(0xFF212121), // Grey Bezels/Belt
         text = Color(0xFFF8FAFC),
         mutedText = Color(0xFF94A3B8),
         accent1 = Color(0xFFFF4500), // Fiery Orange/Red
