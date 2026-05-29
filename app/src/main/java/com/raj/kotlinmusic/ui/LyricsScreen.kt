@@ -136,7 +136,7 @@ fun LyricsScreen(
     var lastTouchPosition by remember { mutableStateOf(androidx.compose.ui.geometry.Offset.Zero) }
 
     var showImportPill by remember { mutableStateOf(false) }
-    var customVideoIndex by remember { mutableStateOf(0) }
+    var customVideoIndex by remember { mutableStateOf(-1) }
     var forceVideoMode by remember { mutableStateOf(false) }
     
     val videoPickerLauncher = androidx.activity.compose.rememberLauncherForActivityResult(
@@ -153,8 +153,8 @@ fun LyricsScreen(
                     e.printStackTrace()
                 }
             }
-            viewModel.customVideoUris = uris.map { it.toString() }
-            customVideoIndex = 0
+            viewModel.customVideoUris = (viewModel.customVideoUris + uris.map { it.toString() }).distinct()
+            customVideoIndex = viewModel.customVideoUris.size - 1
         }
     }
 
@@ -799,7 +799,7 @@ fun LyricsScreen(
                                         if (showImportPill) {
                                             showImportPill = false
                                         } else {
-                                            if (viewModel.customVideoUris.isNotEmpty()) {
+                                            if (customVideoIndex >= 0 && viewModel.customVideoUris.isNotEmpty()) {
                                                 customVideoIndex = (customVideoIndex + 1) % viewModel.customVideoUris.size
                                             } else {
                                                 showSecondaryVideo = !showSecondaryVideo
@@ -812,8 +812,8 @@ fun LyricsScreen(
                     ) {
                         val context = androidx.compose.ui.platform.LocalContext.current
                         
-                        if (viewModel.customVideoUris.isNotEmpty()) {
-                            val safeVideoIndex = if (viewModel.customVideoUris.isNotEmpty()) customVideoIndex % viewModel.customVideoUris.size else 0
+                        if (customVideoIndex >= 0 && viewModel.customVideoUris.isNotEmpty()) {
+                            val safeVideoIndex = customVideoIndex % viewModel.customVideoUris.size
                             val currentUri = viewModel.customVideoUris[safeVideoIndex]
                             
                             androidx.compose.runtime.key(currentUri) {
@@ -1029,14 +1029,33 @@ fun LyricsScreen(
                                 modifier = Modifier.fillMaxWidth(),
                                 verticalArrangement = Arrangement.spacedBy(8.dp)
                             ) {
-                                if (viewModel.customVideoUris.isNotEmpty()) {
-                                    androidx.compose.foundation.lazy.LazyRow(
-                                        horizontalArrangement = Arrangement.spacedBy(8.dp),
-                                        modifier = Modifier.fillMaxWidth()
-                                    ) {
+                                androidx.compose.foundation.lazy.LazyRow(
+                                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                                    modifier = Modifier.fillMaxWidth()
+                                ) {
+                                    item {
+                                        val isSelected = customVideoIndex == -1
+                                        Box(
+                                            modifier = Modifier
+                                                .width(56.dp)
+                                                .height(84.dp)
+                                                .clip(RoundedCornerShape(12.dp))
+                                                .border(
+                                                    width = if (isSelected) 2.dp else 0.dp,
+                                                    color = if (isSelected) theme.accent1 else Color.Transparent,
+                                                    shape = RoundedCornerShape(12.dp)
+                                                )
+                                                .background(theme.accent1.copy(alpha = 0.2f))
+                                                .clickable { customVideoIndex = -1 },
+                                            contentAlignment = Alignment.Center
+                                        ) {
+                                            Icon(androidx.compose.material.icons.Icons.Filled.PlayArrow, contentDescription = "Default Videos", tint = theme.text, modifier = Modifier.size(24.dp))
+                                        }
+                                    }
+                                    if (viewModel.customVideoUris.isNotEmpty()) {
                                         items(viewModel.customVideoUris.size) { idx ->
                                             val uri = viewModel.customVideoUris[idx]
-                                            val isSelected = (customVideoIndex % viewModel.customVideoUris.size) == idx
+                                            val isSelected = customVideoIndex == idx
                                             Box(
                                                 modifier = Modifier
                                                     .width(56.dp)
@@ -1055,16 +1074,38 @@ fun LyricsScreen(
                                     }
                                 }
 
-                                Button(
-                                    onClick = { 
-                                        showImportPill = false
-                                        videoPickerLauncher.launch(arrayOf("video/mp4"))
-                                    },
-                                    modifier = Modifier.fillMaxWidth().height(44.dp),
-                                    colors = ButtonDefaults.buttonColors(containerColor = Color.Black, contentColor = Color.White),
-                                    shape = RoundedCornerShape(50)
+                                Row(
+                                    modifier = Modifier.fillMaxWidth(),
+                                    horizontalArrangement = Arrangement.spacedBy(8.dp)
                                 ) {
-                                    Text("Import your video", fontWeight = FontWeight.Bold, fontSize = 14.sp)
+                                    Button(
+                                        onClick = { 
+                                            showImportPill = false
+                                            videoPickerLauncher.launch(arrayOf("video/mp4"))
+                                        },
+                                        modifier = Modifier.weight(1f).height(44.dp),
+                                        colors = ButtonDefaults.buttonColors(containerColor = Color.Black, contentColor = Color.White),
+                                        shape = RoundedCornerShape(50)
+                                    ) {
+                                        Text("Import your video", fontWeight = FontWeight.Bold, fontSize = 14.sp)
+                                    }
+
+                                    if (customVideoIndex >= 0 && viewModel.customVideoUris.isNotEmpty()) {
+                                        Button(
+                                            onClick = {
+                                                val uriToRemove = viewModel.customVideoUris.getOrNull(customVideoIndex)
+                                                if (uriToRemove != null) {
+                                                    viewModel.customVideoUris = viewModel.customVideoUris - uriToRemove
+                                                    customVideoIndex = -1
+                                                }
+                                            },
+                                            modifier = Modifier.height(44.dp),
+                                            colors = ButtonDefaults.buttonColors(containerColor = Color.Red.copy(alpha = 0.8f), contentColor = Color.White),
+                                            shape = RoundedCornerShape(50)
+                                        ) {
+                                            Icon(Icons.Filled.Close, contentDescription = "Delete", modifier = Modifier.size(18.dp))
+                                        }
+                                    }
                                 }
                             }
                         }
