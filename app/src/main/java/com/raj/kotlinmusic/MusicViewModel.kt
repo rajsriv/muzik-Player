@@ -93,11 +93,17 @@ class MusicViewModel(application: Application) : AndroidViewModel(application) {
 
     val morningSuggestions: List<Song> get() {
         val topPlayed = playlist.filter { it.morningPlayCount > 0 }.sortedByDescending { it.morningPlayCount }.take(5)
-        return if (topPlayed.size >= 5) topPlayed else topPlayed + playlist.filter { it !in topPlayed }.shuffled().take(5 - topPlayed.size)
+        if (topPlayed.size >= 5) return topPlayed
+        val cal = java.util.Calendar.getInstance()
+        val seed = (cal.get(java.util.Calendar.YEAR) * 1000 + cal.get(java.util.Calendar.DAY_OF_YEAR)).toLong()
+        return topPlayed + playlist.filter { it !in topPlayed }.shuffled(kotlin.random.Random(seed)).take(5 - topPlayed.size)
     }
     val afternoonSuggestions: List<Song> get() {
         val topPlayed = playlist.filter { it.afternoonPlayCount > 0 }.sortedByDescending { it.afternoonPlayCount }.take(3)
-        return if (topPlayed.size >= 3) topPlayed else topPlayed + playlist.filter { it !in topPlayed }.shuffled().take(3 - topPlayed.size)
+        if (topPlayed.size >= 3) return topPlayed
+        val cal = java.util.Calendar.getInstance()
+        val seed = (cal.get(java.util.Calendar.YEAR) * 1000 + cal.get(java.util.Calendar.DAY_OF_YEAR)).toLong()
+        return topPlayed + playlist.filter { it !in topPlayed }.shuffled(kotlin.random.Random(seed)).take(3 - topPlayed.size)
     }
 
     var homeViewState by mutableStateOf(HomeViewState.DASHBOARD)
