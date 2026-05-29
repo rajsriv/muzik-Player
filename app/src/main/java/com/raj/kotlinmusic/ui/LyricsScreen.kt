@@ -1073,7 +1073,7 @@ fun LyricsScreen(
 
                 val isNoLyricsVideoState = !viewModel.isLyricsLoading && viewModel.syncedLyricsList.isNullOrEmpty() && (viewModel.lyricsText.isNullOrEmpty() || viewModel.lyricsText?.startsWith("No lyrics") == true || viewModel.lyricsText?.startsWith("No matching lyrics") == true)
                 
-                if (!isNoLyricsVideoState) {
+                if (!isNoLyricsVideoState && !forceVideoMode) {
                     // Bottom Gradient Fade overlay matching theme background color
                     val fadeColor = if (theme.id == "liquid_glass") Color(0xFF0C0E17) else theme.background
                     Box(
