@@ -135,12 +135,17 @@ class MainActivity : ComponentActivity() {
                             com.raj.kotlinmusic.ui.HomeScreen(viewModel = viewModel)
                             
                             // MainScreen is always composed on top, but hidden and made non-interactive when not in PLAYER screen
+                            val playerAlpha by androidx.compose.animation.core.animateFloatAsState(
+                                targetValue = if (isPlayerVisible) 1f else 0f,
+                                animationSpec = tween(400, easing = FastOutSlowInEasing),
+                                label = "PlayerFade"
+                            )
                             Box(
                                 modifier = Modifier
                                     .fillMaxSize()
                                     .graphicsLayer {
-                                        alpha = if (isPlayerVisible) 1f else 0f
-                                        translationY = if (isPlayerVisible) 0f else 10000f
+                                        alpha = playerAlpha
+                                        translationY = if (playerAlpha == 0f) 10000f else 0f
                                     }
                             ) {
                                 MainScreen(viewModel = viewModel)

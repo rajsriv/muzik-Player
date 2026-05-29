@@ -455,21 +455,32 @@ fun HomeScreen(viewModel: MusicViewModel) {
         
         // --- Dynamic Control Capsule Area ---
         if (!viewModel.isStopped) {
+            val beltHeight by androidx.compose.animation.core.animateDpAsState(
+                targetValue = if (viewModel.currentAppScreen == com.raj.kotlinmusic.AppScreen.HOME) 24.dp else 10.dp,
+                animationSpec = androidx.compose.animation.core.tween(400, easing = androidx.compose.animation.core.FastOutSlowInEasing),
+                label = "HomeBeltAnim"
+            )
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(24.dp), // Increased height a little
+                    .height(beltHeight),
                 contentAlignment = Alignment.Center
             ) {
-                Text(
-                    text = "${viewModel.currentSong.title}",
-                    color = Color.White.copy(alpha = 0.6f),
-                    fontSize = 11.sp,
-                    fontWeight = FontWeight.Bold,
-                    maxLines = 1,
-                    overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis,
-                    modifier = Modifier.padding(horizontal = 16.dp)
-                )
+                androidx.compose.animation.AnimatedVisibility(
+                    visible = viewModel.currentAppScreen == com.raj.kotlinmusic.AppScreen.HOME,
+                    enter = androidx.compose.animation.fadeIn(animationSpec = androidx.compose.animation.core.tween(400, delayMillis = 200)),
+                    exit = androidx.compose.animation.fadeOut(animationSpec = androidx.compose.animation.core.tween(200))
+                ) {
+                    Text(
+                        text = "${viewModel.currentSong.title}",
+                        color = Color.White.copy(alpha = 0.6f),
+                        fontSize = 11.sp,
+                        fontWeight = FontWeight.Bold,
+                        maxLines = 1,
+                        overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis,
+                        modifier = Modifier.padding(horizontal = 16.dp)
+                    )
+                }
             }
             
             val isExpanded = viewModel.isPlaying || isExpandedByClick

@@ -799,7 +799,12 @@ fun MainScreen(viewModel: MusicViewModel = viewModel()) {
                         }
                     }
 
-                    Spacer(modifier = Modifier.height(24.dp)) // The black belt
+                    val mainBeltHeight by androidx.compose.animation.core.animateDpAsState(
+                        targetValue = if (viewModel.currentAppScreen == AppScreen.PLAYER) 10.dp else 24.dp,
+                        animationSpec = androidx.compose.animation.core.tween(400, easing = androidx.compose.animation.core.FastOutSlowInEasing),
+                        label = "MainBeltAnim"
+                    )
+                    Spacer(modifier = Modifier.height(mainBeltHeight)) // The black belt
 
                     // 4. Bottom White Capsule
                     com.raj.kotlinmusic.ui.components.SimpleBottomCapsule(
