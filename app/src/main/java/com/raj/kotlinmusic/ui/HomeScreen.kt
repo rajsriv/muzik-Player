@@ -356,7 +356,7 @@ fun HomeScreen(viewModel: MusicViewModel) {
                                 color = if (theme.id == "liquid_glass") liquidGlassColors[1] else theme.accent2,
                                 icon = Icons.Filled.MusicNote,
                                 patternType = 1,
-                                onClick = { viewModel.selectSong(suggestions[0]) },
+                                onClick = { viewModel.selectSong(suggestions[0], suggestions) },
                                 theme = theme,
                                 modifier = Modifier.weight(1f)
                             )
@@ -367,7 +367,7 @@ fun HomeScreen(viewModel: MusicViewModel) {
                                 color = if (theme.id == "liquid_glass") liquidGlassColors[0] else theme.accent3,
                                 icon = Icons.Filled.Album,
                                 patternType = 2,
-                                onClick = { viewModel.selectSong(suggestions[1]) },
+                                onClick = { viewModel.selectSong(suggestions[1], suggestions) },
                                 theme = theme,
                                 modifier = Modifier.weight(1f)
                             )
@@ -379,7 +379,7 @@ fun HomeScreen(viewModel: MusicViewModel) {
                             shape = RoundedCornerShape(24.dp),
                             color = if (theme.id == "liquid_glass") liquidGlassColors[2] else theme.accent1,
                             icon = Icons.Filled.PlayArrow,
-                            onClick = { viewModel.selectSong(suggestions[2]) },
+                            onClick = { viewModel.selectSong(suggestions[2], suggestions) },
                             theme = theme
                         )
                         
@@ -396,7 +396,7 @@ fun HomeScreen(viewModel: MusicViewModel) {
                                 color = if (theme.id == "liquid_glass") liquidGlassColors[1] else theme.accent2,
                                 icon = Icons.Filled.Favorite,
                                 patternType = 4,
-                                onClick = { viewModel.selectSong(suggestions[3]) },
+                                onClick = { viewModel.selectSong(suggestions[3], suggestions) },
                                 theme = theme,
                                 modifier = Modifier.weight(1f)
                             )
@@ -407,7 +407,7 @@ fun HomeScreen(viewModel: MusicViewModel) {
                                 color = if (theme.id == "liquid_glass") liquidGlassColors[0] else theme.accent3,
                                 icon = Icons.Filled.Person,
                                 patternType = 5,
-                                onClick = { viewModel.selectSong(suggestions[4]) },
+                                onClick = { viewModel.selectSong(suggestions[4], suggestions) },
                                 theme = theme,
                                 modifier = Modifier.weight(1f)
                             )
@@ -691,7 +691,7 @@ fun HomeScreen(viewModel: MusicViewModel) {
                                             searchQuery = ""
                                             focusManager.clearFocus()
                                             keyboardController?.hide()
-                                            viewModel.selectSong(song)
+                                            viewModel.selectSong(song, searchResults)
                                         },
                                         theme = theme,
                                         dynamicAccentColor = viewModel.getSongAccentColor(song)
@@ -994,7 +994,7 @@ fun CategoryListScreen(viewModel: MusicViewModel) {
                 items(viewModel.activeCategoryList, key = { it.id }) { song ->
                     SongListItem(
                         song = song,
-                        onClick = { viewModel.selectSong(song) },
+                        onClick = { viewModel.selectSong(song, viewModel.activeCategoryList) },
                         theme = theme,
                         dynamicAccentColor = viewModel.getSongAccentColor(song)
                     )

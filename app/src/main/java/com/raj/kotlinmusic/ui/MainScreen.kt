@@ -91,7 +91,7 @@ import kotlin.math.absoluteValue
 fun MainScreen(viewModel: MusicViewModel = viewModel()) {
     val theme = viewModel.currentPalette
     val currentSong = viewModel.currentSong
-    val playlist = viewModel.playlist
+    val playlist = if (viewModel.currentPlaybackQueue.isNotEmpty()) viewModel.currentPlaybackQueue else viewModel.playlist
     val isPlaying = viewModel.isPlaying
 
     var showSettingsDialog by remember { mutableStateOf(false) }

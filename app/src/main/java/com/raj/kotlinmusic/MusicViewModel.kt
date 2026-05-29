@@ -603,19 +603,20 @@ class MusicViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun nextSong() {
-        if (playlist.isEmpty()) return
-        val target = if (shuffleEnabled && playlist.size > 1) {
-            var randomSong = playlist.random()
+        val activeQueue = if (currentPlaybackQueue.isNotEmpty()) currentPlaybackQueue else playlist
+        if (activeQueue.isEmpty()) return
+        val target = if (shuffleEnabled && activeQueue.size > 1) {
+            var randomSong = activeQueue.random()
             while (randomSong == currentSong) {
-                randomSong = playlist.random()
+                randomSong = activeQueue.random()
             }
             randomSong
         } else {
-            val currentIndex = playlist.indexOfFirst { it.id == currentSong.id }
-            if (currentIndex in playlist.indices && currentIndex < playlist.size - 1) {
-                playlist[currentIndex + 1]
+            val currentIndex = activeQueue.indexOfFirst { it.id == currentSong.id }
+            if (currentIndex in activeQueue.indices && currentIndex < activeQueue.size - 1) {
+                activeQueue[currentIndex + 1]
             } else {
-                playlist[0] // Loop back to start
+                activeQueue[0] // Loop back to start
             }
         }
         currentSong = target
@@ -623,26 +624,34 @@ class MusicViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun previousSong() {
-        if (playlist.isEmpty()) return
-        val target = if (shuffleEnabled && playlist.size > 1) {
-            var randomSong = playlist.random()
+        val activeQueue = if (currentPlaybackQueue.isNotEmpty()) currentPlaybackQueue else playlist
+        if (activeQueue.isEmpty()) return
+        val target = if (shuffleEnabled && activeQueue.size > 1) {
+            var randomSong = activeQueue.random()
             while (randomSong == currentSong) {
-                randomSong = playlist.random()
+                randomSong = activeQueue.random()
             }
             randomSong
         } else {
-            val currentIndex = playlist.indexOfFirst { it.id == currentSong.id }
-            if (currentIndex in playlist.indices && currentIndex > 0) {
-                playlist[currentIndex - 1]
+            val currentIndex = activeQueue.indexOfFirst { it.id == currentSong.id }
+            if (currentIndex in activeQueue.indices && currentIndex > 0) {
+                activeQueue[currentIndex - 1]
             } else {
-                playlist[playlist.size - 1] // Wrap around to end
+                activeQueue[activeQueue.size - 1] // Wrap around to end
             }
         }
         currentSong = target
         playSong(target)
     }
 
-    fun selectSong(song: Song) {
+    var currentPlaybackQueue by mutableStateOf<List<Song>>(emptyList())
+
+    fun selectSong(song: Song, contextQueue: List<Song>? = null) {
+        if (contextQueue != null && contextQueue.isNotEmpty()) {
+            currentPlaybackQueue = contextQueue
+        } else if (currentPlaybackQueue.isEmpty()) {
+            currentPlaybackQueue = playlist
+        }
         val wasAlreadyPlaying = (currentSong == song && isPlaying)
         currentSong = song
         isCapsuleInitialized = true
