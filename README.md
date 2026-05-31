@@ -18,6 +18,8 @@
 
 **A visually immersive local music player for Android — built entirely with Kotlin and Jetpack Compose.**
 
+🌍 **[Visit the Official Website](https://muzik-player-webpage.vercel.app/)**
+
 Muzik Player is a UI/UX exploration project focused on delivering a premium, glassmorphic audio experience with a custom theming engine, fluid player transitions, and dynamic album-art-driven accent colors.
 
 [Features](#-features) · [Screenshots](#-screenshots) · [Tech Stack](#%EF%B8%8F-tech-stack) · [Architecture](#-architecture) · [Getting Started](#-getting-started) · [Roadmap](#-roadmap)
